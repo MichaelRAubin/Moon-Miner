@@ -3,14 +3,14 @@ body {
 }
 
 .img-sizing {
-    height: 400px;
-    width: 400px;
+    height: 300px;
+    width: 300px;
     object-fit: cover;
 }
 
 .icon-sizing {
-    height: 100px;
-    width: 100px;
+    height: 75px;
+    width: 75px;
 }
 
 .bg-black {

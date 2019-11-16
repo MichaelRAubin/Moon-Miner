@@ -1,31 +1,53 @@
 let cheese = -1
-//let jeep = 0
 let axeModifier = 0
-let jeepModifier = 0
-let collectionInterval
+let drillModifier = 0
+let dynamiteModifier = 0
+let dozerModifier = 0
+let collectionInterval = 0
 let cheeseCountElem = document.querySelector("#cheese-count")
 let axeCountElem = document.querySelector("#axe-avail")
-let jeepCountElem = document.querySelector("#jeep-avail")
+let drillCountElem = document.querySelector("#drill-avail")
+let dynamiteCountElem = document.querySelector("#dynamite-avail")
+let dozerCountElem = document.querySelector("#dozer-avail")
 let axeCurrentPriceElem = document.querySelector("#axe-current-price")
-let jeepCurrentPriceElem = document.querySelector("#jeep-current-price")
+let drillCurrentPriceElem = document.querySelector("#drill-current-price")
+let dynamiteCurrentPriceElem = document.querySelector("#dynamite-current-price")
+let dozerCurrentPriceElem = document.querySelector("#dozer-current-price")
 
-let clickUpgrades = {
+let pickUpgrades = {
     pickaxes: {
-        price: 20,
+        price: 10,
         quantity: 0,
         multiplier: 1
     }
-};
-let automaticUpgrades = {
-    jeeps: {
-        price: 100,
+}
+
+let drillUpgrades = {
+    drills: {
+        price: 20,
+        quantity: 0,
+        multiplier: 2
+    }
+}
+
+let dynamiteUpgrades = {
+    dynamite: {
+        price: 30,
+        quantity: 0,
+        multiplier: 5
+    }
+}
+
+let dozerUpgrades = {
+    dozers: {
+        price: 50,
         quantity: 0,
         multipler: 20
     }
 }
 
 function mine() {
-    cheese += (1 + axeModifier)
+    cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
     updateCheese()
 }
 
@@ -38,35 +60,77 @@ function startInterval() {
 }
 
 function axeUpg() {
-    for (let pickaxes in clickUpgrades) {
-        if (clickUpgrades.hasOwnProperty(pickaxes)) {
-            let axes = clickUpgrades[pickaxes];
+    for (let pickaxes in pickUpgrades) {
+        if (pickUpgrades.hasOwnProperty(pickaxes)) {
+            let axes = pickUpgrades[pickaxes];
             if (cheese < axes.price) {
-                axes.quantity += 0
+                return
             } else {
                 axes.quantity += 1
                 axeCountElem.textContent = axes.quantity.toString()
                 cheese -= axes.price
                 axeModifier += axes.multiplier * axes.quantity
+                axes.price *= 2
+                axeCurrentPriceElem.textContent = axes.price.toString()
                 updateCheese()
             } return
         }
-        //use price modifiers 
+
     }
 }
 
-function jeepUpg() {
-    for (let jeeps in automaticUpgrades) {
-        if (automaticUpgrades.hasOwnProperty(jeeps)) {
-            let jeep = automaticUpgrades[jeeps];
-            if (cheese < jeep.price) {
-                jeep.quantity += 0
+function drillUpg() {
+    for (let drills in drillUpgrades) {
+        if (drillUpgrades.hasOwnProperty(drills)) {
+            let drill = drillUpgrades[drills];
+            if (cheese < drill.price) {
+                return
             } else {
-                jeep.quantity += 1
-                jeepCountElem.textContent = jeep.quantity.toString()
-                cheese -= jeep.price
+                drill.quantity += 1
+                drillCountElem.textContent = drill.quantity.toString()
+                cheese -= drill.price
+                drillModifier += drill.multiplier * drill.quantity
+                drill.price *= 2
+                drillCurrentPriceElem.textContent = drill.price.toString()
                 updateCheese()
-                jeepModifier += jeep.multiplier * jeep.quantity
+            } return
+        }
+    }
+}
+
+function dynamiteUpg() {
+    for (let dynamite in dynamiteUpgrades) {
+        if (dynamiteUpgrades.hasOwnProperty(dynamite)) {
+            let blast = dynamiteUpgrades[dynamite];
+            if (cheese < blast.price) {
+                return
+            } else {
+                blast.quantity += 1
+                dynamiteCountElem.textContent = blast.quantity.toString()
+                cheese -= blast.price
+                dynamiteModifier += blast.multiplier * blast.quantity
+                blast.price *= 2
+                dynamiteCurrentPriceElem.textContent = blast.price.toString()
+                updateCheese()
+            } return
+        }
+    }
+}
+
+function dozerUpg() {
+    for (let dozers in dozerUpgrades) {
+        if (dozerUpgrades.hasOwnProperty(dozers)) {
+            let dozer = dozerUpgrades[dozers];
+            if (cheese < dozer.price) {
+                return
+            } else {
+                dozer.quantity += 1
+                dozerCountElem.textContent = dozer.quantity.toString()
+                cheese -= dozer.price
+                updateCheese()
+                dozerModifier += dozer.multiplier * dozer.quantity
+                dozer.price *= 2
+                dozerCurrentPriceElem.textContent = dozer.price.toString()
                 startInterval()
             }
         }
@@ -74,7 +138,6 @@ function jeepUpg() {
 }
 
 function collectAutoUpgrades() {
-    cheese += jeepModifier
     updateCheese()
 }
 
