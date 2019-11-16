@@ -129,14 +129,14 @@ function dozerUpg() {
                 dozerCurrentPriceElem.textContent = dozer.price.toString()
                 updateCheese()
                 startInterval()
-            } return
+            } continue
 
         }
     }
 }
 
 function startInterval() {
-    collectionInterval = setInterval(collectAutoUpgrades, 3000);
+    setInterval(collectAutoUpgrades, 3000);
 }
 function collectAutoUpgrades() {
     mine()
