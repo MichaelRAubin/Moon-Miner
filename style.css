@@ -1,0 +1,26 @@
+body {
+    height: 100vh
+}
+
+.img-sizing {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+}
+
+.icon-sizing {
+    height: 100px;
+    width: 100px;
+}
+
+.bg-black {
+    background: black;
+}
+
+.user-select {
+    user-select: none;
+}
+
+.img-pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container-fluid user-select bg-black">
+    <header class="row text-light h-25">
+        <h1 class="col-12 text-center m-auto">Moon Miner</h1>
+    </header>
+    <main id="mine">
+        <div class="row h-75">
+            <img class="img-fluid img-pointer img-sizing m-auto" onclick="mine()" ; src="moon.jpg" alt="moon.jpg">
+        </div>
+        <div class="row h-25 mt-3">
+            <div class="col-6 text-center">
+                <img class="img-fluid img-pointer icon-sizing m-auto" onclick="axeUpg()" ; src="miner.png"
+                    alt="miner.png">
+                <h5 class="text-light">Axes Available: <span id="axe-avail">0</span></h5>
+                <h5 class="text-light">Current Price: $<span id="axe-current-price">0</span></h5>
+            </div>
+            <div class="col-6 text-center">
+                <img class="img-fluid img-pointer icon-sizing m-auto" onclick="jeepUpg()" ; src="jeep.png"
+                    alt="jeep.png">
+                <h5 class="text-light">Jeeps Available: <span id="jeep-avail">0</span></h5>
+                <h5 class="text-light">Current Price: $<span id="jeep-current-price">0</span></h5>
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="col-12 text-center text-light m-auto">CHEESE: <span id="cheese-count">0</span></h3>
+        </div>
+
+
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
