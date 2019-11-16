@@ -55,9 +55,6 @@ function updateCheese() {
     cheeseCountElem.textContent = cheese.toString()
 }
 
-function startInterval() {
-    collectionInterval = setInterval(collectAutoUpgrades, 3000);
-}
 
 function axeUpg() {
     for (let pickaxes in pickUpgrades) {
@@ -127,18 +124,22 @@ function dozerUpg() {
                 dozer.quantity += 1
                 dozerCountElem.textContent = dozer.quantity.toString()
                 cheese -= dozer.price
-                updateCheese()
                 dozerModifier += dozer.multiplier * dozer.quantity
                 dozer.price *= 2
                 dozerCurrentPriceElem.textContent = dozer.price.toString()
+                updateCheese()
                 startInterval()
-            }
+            } return
+
         }
     }
 }
 
+function startInterval() {
+    collectionInterval = setInterval(collectAutoUpgrades, 3000);
+}
 function collectAutoUpgrades() {
-    updateCheese()
+    mine()
 }
 
 mine()
