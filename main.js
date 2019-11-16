@@ -2,10 +2,12 @@ let cheese = -1
 //let jeep = 0
 let axeModifier = 0
 let jeepModifier = 0
-let collectionInterval = 0
+let collectionInterval
 let cheeseCountElem = document.querySelector("#cheese-count")
 let axeCountElem = document.querySelector("#axe-avail")
 let jeepCountElem = document.querySelector("#jeep-avail")
+let axeCurrentPriceElem = document.querySelector("#axe-current-price")
+let jeepCurrentPriceElem = document.querySelector("#jeep-current-price")
 
 let clickUpgrades = {
     pickaxes: {
@@ -25,11 +27,14 @@ let automaticUpgrades = {
 function mine() {
     cheese += (1 + axeModifier)
     updateCheese()
-
 }
 
 function updateCheese() {
     cheeseCountElem.textContent = cheese.toString()
+}
+
+function startInterval() {
+    collectionInterval = setInterval(collectAutoUpgrades, 3000);
 }
 
 function axeUpg() {
@@ -46,7 +51,7 @@ function axeUpg() {
                 updateCheese()
             } return
         }
-
+        //use price modifiers 
     }
 }
 
@@ -60,20 +65,17 @@ function jeepUpg() {
                 jeep.quantity += 1
                 jeepCountElem.textContent = jeep.quantity.toString()
                 cheese -= jeep.price
-                jeepModifier += jeep.multiplier * jeep.quantity
                 updateCheese()
+                jeepModifier += jeep.multiplier * jeep.quantity
                 startInterval()
             }
         }
     }
 }
 
-function startInterval() {
-    collectionInterval = setInterval(collectAutoUpgrades, 3000);
-}
-
 function collectAutoUpgrades() {
-    // cheese += jeepModifier
+    cheese += jeepModifier
     updateCheese()
 }
+
 mine()
