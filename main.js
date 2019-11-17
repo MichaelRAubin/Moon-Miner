@@ -26,7 +26,7 @@ let drillUpgrades = {
     drills: {
         price: 20,
         quantity: 0,
-        multiplier: 2
+        multiplier: 5
     }
 }
 
@@ -34,7 +34,7 @@ let dynamiteUpgrades = {
     dynamite: {
         price: 30,
         quantity: 0,
-        multiplier: 5
+        multiplier: 10
     }
 }
 
@@ -42,19 +42,19 @@ let dozerUpgrades = {
     dozers: {
         price: 50,
         quantity: 0,
-        multipler: 20
+        multiplier: 20
     }
 }
 
+
 function mine() {
-    cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
     updateCheese()
 }
 
 function updateCheese() {
+    cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
     cheeseCountElem.textContent = cheese.toString()
 }
-
 
 function axeUpg() {
     for (let pickaxes in pickUpgrades) {
@@ -66,11 +66,11 @@ function axeUpg() {
                 axes.quantity += 1
                 axeCountElem.textContent = axes.quantity.toString()
                 cheese -= axes.price
-                axeModifier += axes.multiplier * axes.quantity
+                axeModifier += (axes.multiplier * axes.quantity)
                 axes.price *= 2
                 axeCurrentPriceElem.textContent = axes.price.toString()
                 updateCheese()
-            } return
+            }
         }
 
     }
@@ -86,11 +86,11 @@ function drillUpg() {
                 drill.quantity += 1
                 drillCountElem.textContent = drill.quantity.toString()
                 cheese -= drill.price
-                drillModifier += drill.multiplier * drill.quantity
+                drillModifier += (drill.multiplier * drill.quantity)
                 drill.price *= 2
                 drillCurrentPriceElem.textContent = drill.price.toString()
                 updateCheese()
-            } return
+            }
         }
     }
 }
@@ -105,11 +105,11 @@ function dynamiteUpg() {
                 blast.quantity += 1
                 dynamiteCountElem.textContent = blast.quantity.toString()
                 cheese -= blast.price
-                dynamiteModifier += blast.multiplier * blast.quantity
+                dynamiteModifier += (blast.multiplier * blast.quantity)
                 blast.price *= 2
                 dynamiteCurrentPriceElem.textContent = blast.price.toString()
                 updateCheese()
-            } return
+            }
         }
     }
 }
@@ -124,22 +124,32 @@ function dozerUpg() {
                 dozer.quantity += 1
                 dozerCountElem.textContent = dozer.quantity.toString()
                 cheese -= dozer.price
-                dozerModifier += dozer.multiplier * dozer.quantity
+                dozerModifier += (dozer.multiplier * dozer.quantity)
                 dozer.price *= 2
                 dozerCurrentPriceElem.textContent = dozer.price.toString()
                 updateCheese()
-                startInterval()
-            } continue
-
+            } return
         }
     }
 }
 
 function startInterval() {
-    setInterval(collectAutoUpgrades, 3000);
-}
-function collectAutoUpgrades() {
-    mine()
+    collectionInterval = setInterval(collectAutoUpgrades, 3000);
 }
 
+
+function collectAutoUpgrades() {
+    for (let dozers in dozerUpgrades) {
+        if (dozerUpgrades.hasOwnProperty(dozers)) {
+            let dozer = dozerUpgrades[dozers];
+            if (dozer.quantity == 0) {
+                return
+            } else {
+                cheese += (dozer.multiplier * dozer.quantity)
+                updateCheese()
+            } return
+        }
+    }
+}
 mine()
+startInterval()
