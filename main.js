@@ -14,7 +14,7 @@ let drillCurrentPriceElem = document.querySelector("#drill-current-price")
 let dynamiteCurrentPriceElem = document.querySelector("#dynamite-current-price")
 let dozerCurrentPriceElem = document.querySelector("#dozer-current-price")
 
-let pickUpgrades = {
+let axeUpgrades = {
     pickaxes: {
         price: 10,
         quantity: 0,
@@ -38,14 +38,13 @@ let dynamiteUpgrades = {
     }
 }
 
-let dozerUpgrades = {
+let autoUpgrades = {
     dozers: {
         price: 50,
         quantity: 0,
         multiplier: 20
     }
 }
-
 
 function mine() {
     cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
@@ -57,9 +56,9 @@ function updateCheese() {
 }
 
 function axeUpg() {
-    for (let pickaxes in pickUpgrades) {
-        if (pickUpgrades.hasOwnProperty(pickaxes)) {
-            let axes = pickUpgrades[pickaxes];
+    for (let pickaxes in axeUpgrades) {
+        if (axeUpgrades.hasOwnProperty(pickaxes)) {
+            let axes = axeUpgrades[pickaxes];
             if (cheese < axes.price) {
                 return
             } else {
@@ -115,9 +114,9 @@ function dynamiteUpg() {
 }
 
 function dozerUpg() {
-    for (let dozers in dozerUpgrades) {
-        if (dozerUpgrades.hasOwnProperty(dozers)) {
-            let dozer = dozerUpgrades[dozers];
+    for (let dozers in autoUpgrades) {
+        if (autoUpgrades.hasOwnProperty(dozers)) {
+            let dozer = autoUpgrades[dozers];
             if (cheese < dozer.price) {
                 return
             } else {
@@ -137,11 +136,10 @@ function startInterval() {
     collectionInterval = setInterval(collectAutoUpgrades, 3000);
 }
 
-
 function collectAutoUpgrades() {
-    for (let dozers in dozerUpgrades) {
-        if (dozerUpgrades.hasOwnProperty(dozers)) {
-            let dozer = dozerUpgrades[dozers];
+    for (let dozers in autoUpgrades) {
+        if (autoUpgrades.hasOwnProperty(dozers)) {
+            let dozer = autoUpgrades[dozers];
             if (dozer.quantity == 0) {
                 return
             } else {
