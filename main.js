@@ -48,11 +48,11 @@ let dozerUpgrades = {
 
 
 function mine() {
+    cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
     updateCheese()
 }
 
 function updateCheese() {
-    cheese += (1 + axeModifier + drillModifier + dynamiteModifier + dozerModifier)
     cheeseCountElem.textContent = cheese.toString()
 }
 
